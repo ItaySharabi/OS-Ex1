@@ -2,6 +2,6 @@
 
 int main() {
 
-    welcome("Tal");
+    welcome("Itay and Tal");
     return 0;
 }
