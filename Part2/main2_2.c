@@ -1,22 +1,29 @@
-#include <stdlib.h>
+#define _GNU_SOURCE
 #include <stdio.h>
-#include <unistd.h>
 #include <sched.h>
+#include <unistd.h>
+#include <stdlib.h>
 
-void foo(const char *pid) {
+#define STACK_SIZE 10000
 
-    for(int i = 0; i < 10; i++) {
-        printf("Hello from %s\n", pid);
-        sleep(1);
-    }
+int foo(char *str) {
+    printf("Hello from %s\n", str);
+    sleep(5);
+    exit(1);
+}
+
+int handler() {
+    foo("Child process");
 }
 
 int main() {
 
-    fork();
-    fork();
-    fork();
-    foo("3");
+    char stack[STACK_SIZE + 1];
+    
+    int proc1 = clone(handler, stack + STACK_SIZE, CLONE_PARENT, 0);
+    int proc2 = clone(handler, stack + STACK_SIZE, CLONE_PARENT, 0);
+
+    foo("Parent process");
 
     return 0;
 }

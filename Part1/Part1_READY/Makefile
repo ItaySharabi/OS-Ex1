@@ -1,6 +1,6 @@
 export LD_LIBRARY_PATH=.
 
-all: runall
+all: runall main1_1 main1_2 main1_3
 
 # Subtask 1:
 main1_1: main1_1.o hello_ariel.o
