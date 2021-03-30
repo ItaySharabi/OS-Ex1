@@ -1,11 +1,14 @@
 #define _GNU_SOURCE
-#include <stdio.h>
 #include <sched.h>
-#include <unistd.h>
+#include <stdio.h>
+#include <syslog.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 int main() {
 
+    printf("----------------- TASK 3 -----------------\n");
     // 1. Create a child process by forking from the parent process.
     pid_t pid = fork(); 
 
@@ -14,7 +17,7 @@ int main() {
         // Child --> Want to make a daemon process out of it.
         
         //Init Daemon: 
-        // 2. "Move" process to root directory ('/').
+        // 2. "Move" process to root directory ('/'). 'change directory'
         chdir("/");
 
         // 3. Change session of the daemon process, so the parent proc and daemon child proc 
@@ -22,14 +25,25 @@ int main() {
         // If Child cannot die so parent cannot die also.
         setsid();
 
+        printf("Daemon started!\n");
         // 4. Close all I/O chanlles (stdin, stdout, stderr)
         close(stdin);
         close(stdout);
         close(stderr);
-        
+
+        openlog("newDaemon",LOG_PID,LOG_DAEMON);
+        syslog(LOG_NOTICE,"daemon stating..\n");
+        sleep(3);
+        syslog(LOG_NOTICE,"daemon doing some work..\n");
+        sleep(3);
+        syslog(LOG_NOTICE,"daemon finished..\n");
+
+        sleep(55);
+        printf("Daemon finished working!\n");
 
     } else {
         // Parent
+        printf("daemon pid: %d\n",pid);
     }
 
 
