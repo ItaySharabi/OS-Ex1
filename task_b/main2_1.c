@@ -7,7 +7,7 @@
 void foo(const char *pid) {
 
     for(int i = 0; i < 10; i++) {
-        printf("Hello from %s\n", pid);
+        printf("Hello from %s, my PID is: %d\n", pid, getpid());
         sleep(10);
     }
 }
@@ -21,10 +21,9 @@ int main() {
 
     if(pid == 0) {
         // We're inside child process
-        foo("Task 1 Child");
 
         pid = fork(); // Split into 3 Threads: Main -> Child --> GrandChild
-
+        
 
         if(pid == 0) {
             // We're inside grandchild 
@@ -32,17 +31,20 @@ int main() {
             foo("Task 1 Grandchild");
             exit(1);
             return 0;
+        } else if(pid > 0){
+            foo("Task 1 Child");
         }
+
     } else if(pid > 0){
         // We're inside parent process
 
-        foo("Task 1 Parent");
-        // foo("Parent");
+        foo("Task 1 APP");
         exit(1);
     }
 
-    sleep(55);
-    printf("Task 1 finished!\n");
+    
+    printf("Main App %d\n", getpid());
+    printf("----------- Task 1 finished! ------------\n");
     exit(1);
     return 0;
 }

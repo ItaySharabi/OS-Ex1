@@ -38,7 +38,7 @@ int main() {
         sleep(3);
         syslog(LOG_NOTICE,"daemon finished..\n");
 
-        sleep(55);
+        sleep(20);
         printf("Daemon finished working!\n");
 
     } else {

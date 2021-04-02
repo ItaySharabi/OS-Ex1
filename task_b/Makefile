@@ -1,7 +1,7 @@
 .PHONY: all
 
 all: main2_1 main2_2 main2_3 main2_4
-	./main2_4
+# ./main2_4
 
 
 main2_1: main2_1.c

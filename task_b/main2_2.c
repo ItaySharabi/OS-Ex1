@@ -13,8 +13,9 @@ int foo(char *str) {
 }
 
 int handler() {
-    sleep(50);
+    sleep(5);
     foo("Child process");
+    return 1;
 }
 
 int main() {
