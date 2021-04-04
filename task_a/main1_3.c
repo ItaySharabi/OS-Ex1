@@ -1,11 +1,12 @@
 #define _GNU_SOURCE
 #include <dlfcn.h>
-#include "hello_ariel.h"
+#include <stdio.h>
+
 
 int main() {
 
 
-    void *lib = dlopen("./hello_ariel.so", RTLD_LAZY);
+    void *lib = dlopen("./libHello.so", RTLD_LAZY);
 
     if(lib == NULL) {
         printf("File not found!\n");

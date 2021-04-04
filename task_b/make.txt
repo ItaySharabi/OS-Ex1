@@ -1,0 +1,32 @@
+gcc main2_1.c -o main2_1
+gcc main2_2.c -o main2_2
+gcc main2_3.c -o main2_3
+main2_3.c: In function ‘main’:
+main2_3.c:30:15: warning: passing argument 1 of ‘close’ makes integer from pointer without a cast [-Wint-conversion]
+   30 |         close(stdin);
+      |               ^~~~~
+      |               |
+      |               FILE * {aka struct _IO_FILE *}
+In file included from main2_3.c:6:
+/usr/include/unistd.h:353:23: note: expected ‘int’ but argument is of type ‘FILE *’ {aka ‘struct _IO_FILE *’}
+  353 | extern int close (int __fd);
+      |                   ~~~~^~~~
+main2_3.c:31:15: warning: passing argument 1 of ‘close’ makes integer from pointer without a cast [-Wint-conversion]
+   31 |         close(stdout);
+      |               ^~~~~~
+      |               |
+      |               FILE * {aka struct _IO_FILE *}
+In file included from main2_3.c:6:
+/usr/include/unistd.h:353:23: note: expected ‘int’ but argument is of type ‘FILE *’ {aka ‘struct _IO_FILE *’}
+  353 | extern int close (int __fd);
+      |                   ~~~~^~~~
+main2_3.c:32:15: warning: passing argument 1 of ‘close’ makes integer from pointer without a cast [-Wint-conversion]
+   32 |         close(stderr);
+      |               ^~~~~~
+      |               |
+      |               FILE * {aka struct _IO_FILE *}
+In file included from main2_3.c:6:
+/usr/include/unistd.h:353:23: note: expected ‘int’ but argument is of type ‘FILE *’ {aka ‘struct _IO_FILE *’}
+  353 | extern int close (int __fd);
+      |                   ~~~~^~~~
+gcc main2_4.c -o main2_4

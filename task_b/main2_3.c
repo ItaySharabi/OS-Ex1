@@ -8,7 +8,7 @@
 
 int main() {
 
-    printf("----------------- TASK 3 -----------------\n");
+    printf("----------------- TASK 3  (%d)-----------------\n", getpid());
     // 1. Create a child process by forking from the parent process.
     pid_t pid = fork(); 
 
@@ -31,21 +31,21 @@ int main() {
         close(stdout);
         close(stderr);
 
-        openlog("newDaemon",LOG_PID,LOG_DAEMON);
+        openlog("MyDaemonLog",LOG_PID,LOG_DAEMON);
         syslog(LOG_NOTICE,"daemon stating..\n");
         sleep(3);
         syslog(LOG_NOTICE,"daemon doing some work..\n");
         sleep(3);
         syslog(LOG_NOTICE,"daemon finished..\n");
 
-        sleep(20);
+        sleep(10);
         printf("Daemon finished working!\n");
 
     } else {
         // Parent
         printf("daemon pid: %d\n",pid);
+        exit(1);
     }
 
-
-
+    return 1;
 }
