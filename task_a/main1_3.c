@@ -21,7 +21,7 @@ int main() {
         return -1;
     }
 
-    fnc("Welcome Tal!");
+    fnc("Welcome Tal and Itay!");
     // welcome("Itay and Tal");
     return 0;
 }
